@@ -11,11 +11,11 @@ module.exports = {
       },
       firstName: {
         type: Sequelize.STRING,
-        allowNull: false
+
       },
       lastName: {
         type: Sequelize.STRING,
-        allowNull: false
+
       },
       password: {
         type: Sequelize.STRING,
@@ -27,20 +27,20 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
+
         unique: true
       },
       address: {
         type: Sequelize.STRING,
-        allowNull: false
+
       },
       gender: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+
       },
       roleId: {
         type: Sequelize.STRING,
-        allowNull: false
+
       },
       image: {
         type: Sequelize.STRING,
@@ -48,7 +48,7 @@ module.exports = {
       },
       positionId: {
         type: Sequelize.STRING,
-        allowNull: false
+
       },
       createdAt: {
         allowNull: false,

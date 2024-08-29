@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import db from '../models/index';
+import { where } from 'sequelize';
 const salt = bcrypt.genSaltSync(10);
 
 let hashUserPassword = (password) => {
@@ -21,7 +22,7 @@ let createNewUser = async (data) => {
         await db.User.create({
 
             firstName: data.firstName,
-            password: data.hashPasswordFromBcrypt,
+            password: hashPasswordFromBcrypt,
             lastName: data.lastName,
             email: data.email,
             address: data.address,
@@ -40,8 +41,76 @@ let createNewUser = async (data) => {
         console.error(e);
     }
 };
+let getAllUser = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let users = await db.User.findAll({ raw: true });
+            resolve(users);
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
+
+let GetUserInfobyId = (userId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne({
+                where: { id: userId },
+                raw: true,
+            })
+            if (user) {
+                resolve(user)
+
+            }
+            else
+                resolve({});
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
+let updateServerData = async (data) => {
+    try {
+
+        let user = await db.User.findOne({
+            where: { id: data.id }
+        });
+
+        if (user) {
+
+            user.firstName = data.firstName;
+            user.lastName = data.lastName;
+            user.address = data.address;
+            user.phonenumber = data.phonenumber;
+            user.gender = data.gender === '1' ? true : false;
+            user.roleId = data.roleId;
+            user.positionId = data.positionId;
+            user.image = data.image;
+
+
+            await user.save();
+
+
+            let allUsers = await db.User.findAll();
+            return allUsers;
+        } else {
+
+            return [];
+        }
+    } catch (error) {
+        console.error('Error updating user:', error);
+        throw error;
+    }
+};
+
 
 export default {
     createNewUser,
-    hashUserPassword
+    hashUserPassword,
+    getAllUser,
+    GetUserInfobyId,
+    updateServerData
 };

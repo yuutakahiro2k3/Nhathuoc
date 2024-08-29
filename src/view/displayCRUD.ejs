@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get CRUD</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        .btn-edit {
+            background-color: orange;
+            outline: none;
+            border: none;
+            height: 25px;
+            width: 60px;
+            margin: 5px 0;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background-color: rgb(224, 39, 82);
+            outline: none;
+            border: none;
+            height: 25px;
+            width: 60px;
+            margin: 5px 0;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table style="width:100%">
+        <tr>
+            <th>Email</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Address</th>
+            <th>Password</th>
+            <th>Phonenumber</th>
+            <th>Gender</th>
+            <th>Role ID</th>
+            <th>Position ID</th>
+            <th>Action</th>
+        </tr>
+
+
+        <% for(let i=0; i < datatable.length; i++) { %>
+            <tr>
+                <td>
+                    <%= datatable[i].email %>
+                </td>
+                <td>
+                    <%= datatable[i].firstName %>
+                </td>
+
+                <td>
+                    <%= datatable[i].lastName %>
+                </td>
+
+                <td>
+                    <%= datatable[i].address %>
+                </td>
+
+                <td>
+                    <%= datatable[i].password %>
+                </td>
+                <td>
+                    <%= datatable[i].gender %>
+                </td>
+                <td>
+                    <%= datatable[i].phonenumber %>
+                </td>
+                <td>
+                    <%= datatable[i].roleId %>
+                </td>
+                <td>
+                    <%= datatable[i].positionId %>
+                </td>
+                <td>
+                    <%= datatable[i].image %>
+                </td>
+                <td>
+                    <a href="/edit-crud?id=<%= datatable[i].id %>" class="btn-edit" type="button">Edit</a>
+                    <a href="" class="btn-delete" type="button">Delete</a>
+                </td>
+
+            </tr>
+            <% } %>
+    </table>
+</body>
+
+</html>

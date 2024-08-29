@@ -6,7 +6,10 @@ const initWebRoutes = (app) => {
     router.get('/', homeController.getHomePage);
     router.get('/crud', homeController.getCRUD);
     router.post('/post-crud', homeController.postCRUD);
-    return app.use("/", router);
+    router.get('/get-crud', homeController.displaygetCRUD);
+    router.get('/edit-crud', homeController.geteditCRUD);
+    router.post('/put-crud', homeController.putCRUD);
+    app.use("/", router);
 }
 
 export default initWebRoutes;
